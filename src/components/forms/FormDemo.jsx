@@ -11,7 +11,7 @@ function FormDemo() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const emailValue = emailRef.current.value; // read unmanaged DOM value
+    const emailValue = emailRef.current.value; // uncontrolled
 
     alert(`
       Controlled Name: ${name}
@@ -19,7 +19,7 @@ function FormDemo() {
     `);
 
     // reset
-    setName("");        // controlled
+    setName(""); // controlled
     emailRef.current.value = ""; // uncontrolled
   };
 
@@ -40,6 +40,16 @@ function FormDemo() {
           />
         </div>
 
+        {/* LIVE updating display */}
+        <div style={{ marginBottom: "12px" }}>
+          <label>Your Name is: </label>
+          <input
+            type="text"
+            value={name}   // uses SAME state
+            readOnly
+          />
+        </div>
+
         {/* Uncontrolled input */}
         <div style={{ marginBottom: "12px" }}>
           <label>Email (Uncontrolled): </label>
@@ -47,6 +57,15 @@ function FormDemo() {
             type="email"
             ref={emailRef}
             placeholder="Enter your email"
+          />
+        </div>
+
+        <div style={{ marginBottom: "12px" }}>
+          <label>Your Email is: </label>
+          <input
+            type="email"
+            value={emailRef.current ? emailRef.current.value : ""}   // uses SAME state
+            readOnly
           />
         </div>
 
