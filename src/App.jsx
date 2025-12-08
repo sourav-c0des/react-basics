@@ -14,6 +14,7 @@ import About from "./pages/About";
 import User from "./pages/User";
 import "./App.css";
 import { useAppContext } from "./context/AppContext";
+import ErrorBoundary from "./error/ErrorBoundary";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
 
       {/* Page container */}
       <main className="app-container">
+      <ErrorBoundary>
         <Routes>
           <Route
             path="/"
@@ -85,6 +87,7 @@ function App() {
             }
           />
         </Routes>
+      </ErrorBoundary>
       </main>
     </div>
   );  
