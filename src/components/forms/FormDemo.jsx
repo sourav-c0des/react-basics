@@ -1,26 +1,32 @@
-// src/components/forms/FormDemo.jsx
 import { useState, useRef } from "react";
 
 function FormDemo() {
-  // Controlled input
+  // Controlled Name input
   const [name, setName] = useState("");
 
-  // Uncontrolled input
+  // Uncontrolled Email input
   const emailRef = useRef();
+
+  // Submitted email (displayed after submit)
+  const [submittedEmail, setSubmittedEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const emailValue = emailRef.current.value; // uncontrolled
+    const emailValue = emailRef.current.value; // Read from DOM only on submit
 
+    // Show alert
     alert(`
       Controlled Name: ${name}
       Uncontrolled Email: ${emailValue}
     `);
 
-    // reset
-    setName(""); // controlled
-    emailRef.current.value = ""; // uncontrolled
+    // Update display for uncontrolled input
+    setSubmittedEmail(emailValue);
+
+    // Reset form
+    setName("");                  // controlled
+    emailRef.current.value = "";  // uncontrolled
   };
 
   return (
@@ -40,12 +46,12 @@ function FormDemo() {
           />
         </div>
 
-        {/* LIVE updating display */}
+        {/* Live updating display for controlled input */}
         <div style={{ marginBottom: "12px" }}>
           <label>Your Name is: </label>
           <input
             type="text"
-            value={name}   // uses SAME state
+            value={name}
             readOnly
           />
         </div>
@@ -60,11 +66,12 @@ function FormDemo() {
           />
         </div>
 
+        {/* Display email AFTER submit */}
         <div style={{ marginBottom: "12px" }}>
           <label>Your Email is: </label>
           <input
-            type="email"
-            value={emailRef.current ? emailRef.current.value : ""}   // uses SAME state
+            type="text"
+            value={submittedEmail}
             readOnly
           />
         </div>
