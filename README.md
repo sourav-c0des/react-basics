@@ -1,4 +1,3 @@
-🔵 CallbackParent rendered
 # React Practice App – Revision Notes
 
 A complete summary of all React concepts learned so far. This document is designed to serve as a clear and professional reference, especially for interview preparation.
