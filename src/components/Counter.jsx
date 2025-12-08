@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 
 function Counter({ initial }) {
   const [count, setCount] = useState(initial);
+  if (count === 2) {
+      throw new Error("Intentional test error");
+    }
 
   const prevCountRef = useRef(count);
 
