@@ -218,21 +218,4 @@ class ErrorBoundary extends React.Component {
 
 ---
 
-# Remaining Concepts (To Be Completed)
 
-* Lifting State Up
-* Conditional Rendering
-* Lists and Keys
-* Custom Hooks
-* useNavigate (React Router)
-* Nested Routes
-* Compound Component Pattern
-* Publisher–Subscriber Pattern
-* useMemo (Advanced)
-* useCallback (Advanced)
-
----
-
-# Notes
-
-You have covered the core of modern React development. The remaining concepts will complete your interview preparation and deepen your architectural understanding.
