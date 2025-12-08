@@ -5,6 +5,7 @@ import './App.css'
 import Header from "./components/Header";
 import Counter from "./components/Counter";
 import RefDemo from "./components/RefDemo";
+import PerformanceDemo from "./components/performance/PerformanceDemo";
 
 
 
@@ -21,6 +22,7 @@ function App() {
       {/* Parent gives initial value, child manages its own state */}
       <Counter initial={0} />
       <RefDemo />
+      <PerformanceDemo />
     </div>
   );
   
