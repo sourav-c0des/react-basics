@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Counter from "./components/Counter";
 import RefDemo from "./components/RefDemo";
 import PerformanceDemo from "./components/performance/PerformanceDemo";
+import FormDemo from "./components/forms/FormDemo";
 
 
 
@@ -23,6 +24,7 @@ function App() {
       <Counter initial={0} />
       <RefDemo />
       <PerformanceDemo />
+      <FormDemo />
     </div>
   );
   
