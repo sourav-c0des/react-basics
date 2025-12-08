@@ -1,12 +1,37 @@
-// src/components/Counter.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Counter({ initial }) {
-  // useState hook manages internal state for this component
   const [count, setCount] = useState(initial);
 
+  // 1️⃣ Run ONCE when component mounts
+  useEffect(() => {
+    console.log("Counter mounted");
+
+    // Cleanup runs when component unmounts
+    return () => {
+      console.log("Counter unmounted");
+    };
+  }, []); // empty array → runs only once
+
+  // 2️⃣ Run when 'count' changes
+  useEffect(() => {
+    console.log("Count changed:", count);
+  }, [count]);
+
+  // 3️⃣ Timer effect → updates every second
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      console.log("Timer tick");
+    }, 1000);
+
+    // Cleanup: stop the timer when component is removed
+    return () => {
+      clearInterval(intervalId);
+      console.log("Timer stopped");
+    };
+  }, []);
+
   const handleIncrement = () => {
-    // Functional update based on previous state (good practice)
     setCount((prev) => prev + 1);
   };
 
