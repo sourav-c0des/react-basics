@@ -16,6 +16,7 @@ import "./App.css";
 import { useAppContext } from "./context/AppContext";
 import ErrorBoundary from "./error/ErrorBoundary";
 import MemoParent from "./components/performance/MemoParent";
+import CallbackParent from "./components/performance/CallbackParent";
 
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
                   
                   <Counter initial={0} />
                   <MemoParent />
+                  <CallbackParent />
+                  
                 </section>
 
                 <section className="card">
