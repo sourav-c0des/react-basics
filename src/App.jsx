@@ -15,6 +15,7 @@ import User from "./pages/User";
 import "./App.css";
 import { useAppContext } from "./context/AppContext";
 import ErrorBoundary from "./error/ErrorBoundary";
+import MemoParent from "./components/performance/MemoParent";
 
 
 function App() {
@@ -46,7 +47,9 @@ function App() {
                 <Header title="React Practice App" />
 
                 <section className="card">
+                  
                   <Counter initial={0} />
+                  <MemoParent />
                 </section>
 
                 <section className="card">
