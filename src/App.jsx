@@ -8,7 +8,10 @@ import RefDemo from "./components/RefDemo";
 import PerformanceDemo from "./components/performance/PerformanceDemo";
 import FormDemo from "./components/forms/FormDemo";
 import ContextDemo from "./context/ContextDemo";
-
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import User from "./pages/User";
 
 
 function App() {
@@ -16,17 +19,31 @@ function App() {
   const username = "Sourav"; // just a normal JS variable for now
   const appTitle = "React Practice App";
 
-   return (
+    return (
     <div style={{ padding: "16px", fontFamily: "sans-serif" }}>
-      {/* Passing data down from parent to child as props */}
-      <Header title={appTitle} username={username} />
+      {/* Navigation Bar */}
+      <nav style={{ marginBottom: "16px" }}>
+        <Link to="/" style={{ marginRight: 12 }}>Home</Link>
+        <Link to="/about" style={{ marginRight: 12 }}>About</Link>
+        <Link to="/user/101">User</Link>
+      </nav>
 
-      {/* Parent gives initial value, child manages its own state */}
-      <Counter initial={0} />
-      <RefDemo />
-      <PerformanceDemo />
-      <FormDemo />
-      <ContextDemo />
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Header title="React Practice App" />
+            <Counter initial={0} />
+            <RefDemo />
+            <PerformanceDemo />
+            <FormDemo />
+            <ContextDemo />
+          </>
+        } />
+
+        <Route path="/about" element={<About />} />
+        <Route path="/user/:id" element={<User />} />
+      </Routes>
     </div>
   );
   
