@@ -18,6 +18,7 @@ import ErrorBoundary from "./error/ErrorBoundary";
 import MemoParent from "./components/performance/MemoParent";
 import CallbackParent from "./components/performance/CallbackParent";
 import LiftingParent from "./components/lifting/LiftingParent";
+import ConditionalDemo from "./components/conditional/ConditionalDemo";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
                   <MemoParent />
                   <CallbackParent />
                   <LiftingParent />
+                  <ConditionalDemo />
                 </section>
 
                 <section className="card">
