@@ -240,3 +240,260 @@ function Parent() {
     </>
   );
 }
+## 14. Lifting State Up
+---
+
+Used when multiple components need to share the same state.
+
+* Move shared state to the nearest common parent.
+* Children receive state and setters via props.
+* Prevents inconsistent or duplicated state.
+
+Example:
+
+~~~jsx
+function Parent() {
+  const [text, setText] = useState("");
+
+  return (
+    <>
+      <ChildInput value={text} setValue={setText} />
+      <ChildDisplay value={text} />
+    </>
+  );
+}
+~~~
+
+---
+
+## 15. Conditional Rendering
+---
+
+Render UI based on conditions.
+
+### Ternary
+
+~~~jsx
+{isLoggedIn ? <Dashboard /> : <Login />}
+~~~
+
+### Logical AND
+
+~~~jsx
+{show && <Message />}
+~~~
+
+### Early Return
+
+~~~jsx
+if (!data) return <Loader />;
+~~~
+
+Used for authentication flows, conditional UI, and loading states.
+
+---
+
+## 16. Lists & Keys
+---
+
+Render lists:
+
+~~~jsx
+{items.map(item => (
+  <li key={item.id}>{item.name}</li>
+))}
+~~~
+
+Key rules:
+
+* Keys must be unique and stable.
+* Avoid array index unless list is static.
+* Keys help React match items across renders.
+
+---
+
+## 17. Custom Hooks
+---
+
+Extract reusable logic outside components.
+
+Example:
+
+~~~jsx
+function useLocalStorage(key, initial) {
+  const [value, setValue] = useState(() => {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : initial;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [value]);
+
+  return [value, setValue];
+}
+~~~
+
+---
+
+## 18. useMemo (Deep Dive)
+---
+
+Memoizes expensive calculations.
+
+~~~jsx
+const filtered = useMemo(() => {
+  return items.filter(item => item.active);
+}, [items]);
+~~~
+
+Used for large lists, heavy calculations, and derived state.
+
+---
+
+## 19. useCallback (Deep Dive)
+---
+
+Memoizes function references.
+
+~~~jsx
+const increment = useCallback(() => {
+  setCount(c => c + 1);
+}, []);
+~~~
+
+Used when passing callbacks to memoized children.
+
+---
+
+## 20. useNavigate
+---
+
+Programmatic navigation in React Router.
+
+~~~jsx
+const navigate = useNavigate();
+navigate("/dashboard");
+~~~
+
+Used for redirects after login or form submission.
+
+---
+
+## 21. Nested Routes
+---
+
+~~~jsx
+<Routes>
+  <Route path="/dashboard" element={<DashboardLayout />}>
+    <Route index element={<DashboardHome />} />
+    <Route path="profile" element={<Profile />} />
+  </Route>
+</Routes>
+~~~
+
+Render child routes with:
+
+~~~jsx
+<Outlet />
+~~~
+
+Used for dashboards, multi-step forms, and nested pages.
+
+---
+
+## 22. useLayoutEffect
+---
+
+Runs **before** browser paint (unlike `useEffect`).
+
+~~~jsx
+useLayoutEffect(() => {
+  const rect = boxRef.current.getBoundingClientRect();
+}, []);
+~~~
+
+Use for DOM measurements, avoiding flicker, and synchronous layout updates.
+
+---
+
+## 23. Rendering Behavior in React
+---
+
+A component re-renders when:
+
+* State changes  
+* Props change  
+* Context changes  
+* Parent re-renders  
+
+### Render vs Refresh
+
+**Render** → React recalculates virtual DOM, state stays.  
+**Refresh** → full app reload, all state resets.
+
+---
+
+## 24. Performance Optimization Summary
+---
+
+Tools:
+
+* `React.memo` — memoizes component renders  
+* `useMemo` — memoizes expensive values  
+* `useCallback` — memoizes function references  
+
+Used to reduce unnecessary re-renders and improve performance in heavy components.
+
+---
+
+## 25. Publisher–Subscriber Pattern
+---
+
+Event-driven communication:
+
+* Publisher emits events  
+* Subscribers listen and react  
+* Components remain decoupled  
+
+Example:
+
+~~~js
+const bus = {
+  subs: {},
+  subscribe(event, fn) {
+    if (!this.subs[event]) this.subs[event] = [];
+    this.subs[event].push(fn);
+  },
+  publish(event, data) {
+    (this.subs[event] || []).forEach(fn => fn(data));
+  }
+};
+~~~
+
+Used in notifications, analytics, and real-time features.
+
+---
+
+## 26. Compound Components Pattern
+---
+
+Components working together as a unified API.
+
+Example:
+
+~~~jsx
+<Tabs>
+  <Tabs.List>
+    <Tabs.Tab value="home">Home</Tabs.Tab>
+    <Tabs.Tab value="profile">Profile</Tabs.Tab>
+  </Tabs.List>
+
+  <Tabs.Panel value="home">Home content</Tabs.Panel>
+  <Tabs.Panel value="profile">Profile content</Tabs.Panel>
+</Tabs>
+~~~
+
+Used in Tabs, Modals, Accordions, Dropdowns, and UI libraries like Headless UI and MUI.
+
+---
