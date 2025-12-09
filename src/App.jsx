@@ -17,6 +17,7 @@ import { useAppContext } from "./context/AppContext";
 import ErrorBoundary from "./error/ErrorBoundary";
 import MemoParent from "./components/performance/MemoParent";
 import CallbackParent from "./components/performance/CallbackParent";
+import LiftingParent from "./components/lifting/LiftingParent";
 
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
                   <Counter initial={0} />
                   <MemoParent />
                   <CallbackParent />
-                  
+                  <LiftingParent />
                 </section>
 
                 <section className="card">
