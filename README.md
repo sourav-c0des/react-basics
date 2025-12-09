@@ -240,6 +240,9 @@ function Parent() {
     </>
   );
 }
+```
+
+
 ## 14. Lifting State Up
 ---
 
