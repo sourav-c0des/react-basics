@@ -19,6 +19,7 @@ import MemoParent from "./components/performance/MemoParent";
 import CallbackParent from "./components/performance/CallbackParent";
 import LiftingParent from "./components/lifting/LiftingParent";
 import ConditionalDemo from "./components/conditional/ConditionalDemo";
+import ListDemo from "./components/lists/ListDemo";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
                   <CallbackParent />
                   <LiftingParent />
                   <ConditionalDemo />
+                   <ListDemo />
                 </section>
 
                 <section className="card">
