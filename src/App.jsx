@@ -20,6 +20,7 @@ import CallbackParent from "./components/performance/CallbackParent";
 import LiftingParent from "./components/lifting/LiftingParent";
 import ConditionalDemo from "./components/conditional/ConditionalDemo";
 import ListDemo from "./components/lists/ListDemo";
+import LocalStorageDemo from "./hooks/LocalStorageDemo";
 
 
 function App() {
@@ -57,7 +58,8 @@ function App() {
                   <CallbackParent />
                   <LiftingParent />
                   <ConditionalDemo />
-                   <ListDemo />
+                  <ListDemo />
+                  <LocalStorageDemo />
                 </section>
 
                 <section className="card">

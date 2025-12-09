@@ -1,6 +1,5 @@
-// CONCEPT: useCallback ensures function reference stability.
-// Without useCallback, this parent would re-create the function on every render,
-// causing CallbackChild to re-render even if props did NOT change.
+// src/components/performance/CallbackParent.jsx
+// CONCEPT: useCallback memoizes function reference so React.memo child doesn't re-render unnecessarily.
 
 import { useState, useCallback } from "react";
 import CallbackChild from "./CallbackChild";
@@ -11,13 +10,13 @@ function CallbackParent() {
 
   console.log("🔵 CallbackParent rendered");
 
-  // ❌ Without useCallback:
+  // ❌ Version that breaks memo (for reference):
   // const increment = () => setCount(c => c + 1);
 
-  // ✅ With useCallback:
+  // ✅ useCallback: function reference is stable between renders
   const increment = useCallback(() => {
     setCount((c) => c + 1);
-  }, []); // ← function will never change reference
+  }, []); // no dependencies → same function instance every render
 
   return (
     <section className="card">
@@ -26,11 +25,12 @@ function CallbackParent() {
       <p>Count: {count}</p>
       <p>Unrelated: {unrelated}</p>
 
-      <button onClick={() => setUnrelated(u => u + 1)}>
+      {/* Updating unrelated state: SHOULD NOT re-render child */}
+      <button onClick={() => setUnrelated((u) => u + 1)}>
         Update Unrelated State
       </button>
 
-      {/* Child only re-renders when increment reference changes */}
+      {/* Child only re-renders when `increment` reference OR other props change */}
       <CallbackChild onClickIncrement={increment} />
     </section>
   );
